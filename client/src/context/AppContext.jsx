@@ -36,10 +36,9 @@ export const AppProvider = ({ children }) => {
         }
     }
     // Function to fetch all cars from the server
-
     const fetchCars = async () => {
         try {
-            const { data } = await axios.get('/api/user/cars')
+            const { data } = await axios.get('/api/cars')  // Changed endpoint to public endpoint
             data.success ? setCars(data.cars) : toast.error(data.message)
         } catch (error) {
             toast.error(error.message)
@@ -57,15 +56,15 @@ export const AppProvider = ({ children }) => {
     }
 
 
-    // useEffect to retrieve the token from localStorage
+    // useEffect to retrieve the token from localStorage and fetch cars
     useEffect(() => {
         const token = localStorage.getItem('token')
         setToken(token)
 
         if (token) {
             axios.defaults.headers.common['Authorization'] = `${token}`
-            fetchCars()
         }
+        fetchCars()  // Fetch cars regardless of authentication status
     }, [])
 
 
