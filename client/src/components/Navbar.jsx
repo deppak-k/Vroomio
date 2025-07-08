@@ -44,7 +44,6 @@ const Navbar = () => {
                         alt="Vroomio Logo"
                         className="h-10 w-auto object-contain"
                     />
-                    <span className="text-xl font-bold text-primary hidden sm:inline">Vroomio</span>
                 </motion.div>
             </Link>
 
